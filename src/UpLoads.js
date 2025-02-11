@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 function UpLoads() {
   const [productName, setProductName] = useState("");
@@ -6,6 +6,7 @@ function UpLoads() {
   const [image, setImage] = useState(null);
   const [msg, setMsg] = useState("");
   const [stats, setStats] = useState(false);
+  const fileUploadRef = useRef(null);
 
   const handleFileChange = (e) => {
     setImage(e.target.files[0]);
@@ -14,9 +15,8 @@ function UpLoads() {
   useEffect(() => {
     setTimeout(() => {
       setMsg("");
-      setStats(false)
+      setStats(false);
     }, 10000);
-    
   }, [msg]);
 
   const handleSubmit = async (e) => {
@@ -44,9 +44,11 @@ function UpLoads() {
 
       setMsg(data.message);
       setStats(true);
-      setImage(null)
+      if (fileUploadRef.current) {
+        fileUploadRef.current.value = "";
+      }
       setProductName("");
-      setQuantity("")
+      setQuantity("");
     } catch (error) {
       console.error("Error:", error);
       setMsg(error.message);
@@ -55,7 +57,7 @@ function UpLoads() {
 
   return (
     <div>
-      <h2>Update Product</h2>
+      <h2>Add Product</h2>
       <br />
       <p style={{ color: stats ? "green" : "red" }}>{msg}</p>
       <form onSubmit={handleSubmit}>
@@ -78,6 +80,7 @@ function UpLoads() {
 
         <label>Upload Image:</label>
         <input
+          ref={fileUploadRef}
           type="file"
           accept="image/*"
           placeholder="Add Image"
@@ -85,7 +88,9 @@ function UpLoads() {
           required
         />
 
-        <button type="submit">Add Product</button>
+        <button type="submit" className="add-btn">
+          Add Product
+        </button>
       </form>
     </div>
   );

@@ -1,8 +1,12 @@
 * {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: large;
+  box-sizing: border-box;
   padding: 0%;
   margin: 0;
+}
+.cart-message {
+  width: 95%;
+  height: 8%;
 }
 body,
 html {
@@ -18,12 +22,12 @@ select {
   height: 100%;
 }
 h2 {
-  height: 10%;
+  height: 4%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-button {
+.add-btn {
   cursor: pointer;
   padding: 10px;
   background-color: rgb(152, 241, 152);
@@ -31,6 +35,14 @@ button {
   border-radius: 10px;
   margin: 20px;
 }
-p{
-  margin: 7px;
+
+.cart-div{
+  height: 96%;
+}
+.cart-title{
+  height: 7%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }

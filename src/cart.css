@@ -1,0 +1,181 @@
+.cart-holder {
+  width: 100%;
+  height: 93%;
+  /* background-color: rgb(250, 247, 247); */
+  display: flex;
+}
+.cart-list {
+  margin-left: 3%;
+
+  width: 80%;
+  height: 100%;
+  background-color: rgb(253, 253, 253);
+  text-overflow: ellipsis;
+  overflow: auto;
+}
+.payment-section {
+  margin: 2%;
+  width: 28%;
+  height: 92%;
+  background-color: rgb(255, 255, 255);
+}
+.cart-card {
+  display: flex;
+  width: 100%;
+  height: 27%;
+  padding: 2%;
+  border-bottom: 1px solid black;
+}
+.image-holder {
+  display: flex;
+  width: 17%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.desc-holder {
+  margin-right: 2%;
+  width: 65%;
+  height: 100%;
+}
+.price-tag {
+  font-family: "Amazon Ember", Arial, sans-serif;
+  font-size: larger;
+
+  width: 16%;
+  height: 100%;
+}
+.subtotal-section {
+  font-size: larger;
+  height: 8%;
+  text-align: right;
+  margin: 2%;
+  margin-right: 8%;
+}
+.cart-img {
+  width: 50%;
+  height: 100%;
+}
+.desc-detail {
+  /* height: 30%; */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.prod-desc {
+  height: 100%;
+  width: 100%;
+  font-size: 19px;
+}
+.other-details {
+  height: 43%;
+  margin: 2% 0;
+}
+
+.btn-holder {
+  display: flex;
+  justify-content: space-evenly;
+  width: 10%;
+  border-radius: 16px;
+  border: 1px solid #ffd814;
+  border-width: 3px;
+  padding: 0px 5px;
+}
+.cart-btn {
+  cursor: pointer;
+  width: 20%;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  font-size: large;
+  padding: 3%;
+}
+.count {
+  font-size: large;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  text-wrap: wrap;
+}
+.details-list {
+  font-size: smaller;
+  padding: 5px;
+  font-style: italic;
+}
+.action-holder {
+  display: flex;
+  gap: 5%;
+}
+.Actions {
+  width: 55%;
+  display: flex;
+  align-items: center;
+
+  padding-right: 3%;
+}
+.act-btns {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  padding: 0px 10px;
+  color: #0066c0;
+  font-size: small;
+  border-right: 1px solid #999; /* Vertical line */
+}
+.act-btns:hover {
+  text-decoration: underline;
+}
+
+.act-btns:last-child {
+  border-right: none;
+}
+.actual-mrp {
+  margin: 2%;
+  font-size: 12px;
+  height: 10%;
+}
+.discount-tag {
+  font-size: 11px;
+  width: 32%;
+  margin-right: 4%;
+  height: 100%;
+  font-weight: 700;
+  color: white;
+  background-color: #cc0c39;
+
+  height: 90%;
+}
+.discount-container {
+  width: 100%;
+  height: 18%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.discount-text {
+  width: 68%;
+  font-size: 12px;
+  color: #cc0c39;
+  font-weight: 600;
+  font-family: "Amazon Ember", Arial, sans-serif;
+}
+.actual-price {
+  height: 20%;
+}
+.actual-mrp,
+.discount-tag,
+.actual-price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+span {
+  margin-left: 10px;
+  text-decoration: line-through;
+}
