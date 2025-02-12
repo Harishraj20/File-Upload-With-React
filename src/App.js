@@ -1,11 +1,11 @@
 import "./App.css";
-import Products from "./Products";
-import Cart from "./Cart";
+import Products from "./Components/Products";
+import Cart from "./Components/Cart";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import UpLoads from "./UpLoads";
-import './FontAwesome.config';
-import Header from "./Header";
-import ProductInfo from "./productInfo";
+import UpLoads from "./Components/UpLoads";
+import "./Configs/FontAwesome.config";
+import Header from "./Components/Header";
+import ProductInfo from "./Components/ProductInfo";
 
 function App() {
   return (
@@ -18,7 +18,6 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/productInfo" element={<ProductInfo />} />
-
         </Routes>
       </BrowserRouter>
     </div>

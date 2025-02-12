@@ -4,7 +4,6 @@ function Products() {
   const [products, setProducts] = useState([]);
   const [prodMsg, setProdMsg] = useState("");
   const [cart, setCart] = useState([]);
-  // const [updateTrigger, setUpdateTrigger] = useState(false);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -43,8 +42,6 @@ function Products() {
 
   useEffect(() => {
     if (cart.length > 0) {
-   
-      console.log("called 1st");
       localStorage.setItem("cart", JSON.stringify(cart));
     }
   }, [cart]);
@@ -81,29 +78,7 @@ function Products() {
 
       return [...prevState, { ...product, qty: 1 }];
     });
-
-    // updateProduct(id);
   };
-
-  // const updateProduct = async (id) => {
-  //   console.log(id);
-  //   try {
-  //     const response = await fetch(
-  //       `http://localhost:8080/filemanagement/updateProduct/${id}`,
-  //       {
-  //         method: "POST",
-  //       }
-  //     );
-
-  //     if (!response.ok) {
-  //       throw new Error("Product not found!");
-  //     }
-  //     setUpdateTrigger((prev) => !prev);
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // };
-
   return (
     <>
       <h2 className="title">PRODUCTS LIST</h2>
@@ -113,7 +88,7 @@ function Products() {
       <div className="product-holder">
         {products.length > 0 ? (
           products
-            .filter((prod) => prod.quantity > 0) // Filter out products with 0 quantity
+            .filter((prod) => prod.quantity > 0)
             .map((prod, index) => (
               <div className="product-card" key={index}>
                 <div className="img-container">

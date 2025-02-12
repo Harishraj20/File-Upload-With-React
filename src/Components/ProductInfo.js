@@ -1,6 +1,6 @@
 import React from "react";
-import "./ProductInfo.css";
-function productInfo() {
+import "../Styles/ProductInfo.css";
+function ProductInfo() {
   return (
     <div className="product-page">
       <div className="product-info"></div>
@@ -8,4 +8,4 @@ function productInfo() {
   );
 }
 
-export default productInfo;
+export default ProductInfo;
