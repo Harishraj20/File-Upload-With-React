@@ -17,7 +17,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-   margin: 2%;
+  margin: 2%;
   width: 28%;
   height: 92%;
   background-color: rgb(255, 255, 255);
@@ -27,7 +27,7 @@
   width: 100%;
   height: 25%;
   padding: 2%;
-  border-bottom: 1px solid #E7E7E7;
+  border-bottom: 1px solid #e7e7e7;
 }
 .image-holder {
   display: flex;
@@ -43,7 +43,6 @@
 }
 .price-tag {
   font-family: "Amazon Ember", Arial, sans-serif;
-  
 
   width: 16%;
   height: 100%;
@@ -56,7 +55,7 @@
   margin-right: 6%;
 }
 .cart-img {
-  width: 50%;
+  width: 40%;
   height: 100%;
 }
 .desc-detail {
@@ -75,9 +74,11 @@
 .other-details {
   height: 43%;
   margin: 2% 0;
+  margin-top: 1%;
 }
 
 .btn-holder {
+  position: relative;
   display: flex;
   justify-content: space-evenly;
   width: 15%;
@@ -86,6 +87,52 @@
   border-width: 3px;
   padding: 0px 15px;
 }
+.tool-tip {
+  padding: 7px;
+  padding-right: 50px;
+  font-size: 18px;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid black;
+  top: -90px;
+  width: 400px;
+  text-align: center;
+  height: auto;
+  border: 1px solid #bbbfbf;
+  border-color: #bbbfbf;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(15, 17, 17, 0.15);
+}
+.tool-tip::after {
+  border-top-color: #bbbfbf;
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 10px;
+  border-style: solid;
+  border-color: #fff transparent transparent transparent;
+}
+.close-btn {
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 5%;
+  font-size: x-large;
+}
+.tool-tip::before {
+  border-top-color: #bbbfbf;
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 11px;
+  border-style: solid;
+  border-color: #bbbfbf transparent transparent transparent;
+}
+
 .cart-btn {
   cursor: pointer;
   width: 20%;
@@ -186,32 +233,120 @@ span {
   margin-left: 10px;
   text-decoration: line-through;
 }
-.cart-tag{
+.cart-tag {
   height: 7%;
   width: 100%;
-  border-bottom:1px solid #E7E7E7;
+  border-bottom: 1px solid #e7e7e7;
   display: flex;
 }
-.tag-name,.tag-price{
+.tag-name,
+.tag-price {
   width: 50%;
   display: flex;
-  font-family:"Amazon Ember", Arial, sans-serif;;
-
-  
+  font-family: "Amazon Ember", Arial, sans-serif;
 }
-.tag-name{
+.tag-name {
   font-size: x-large;
   align-items: center;
   padding-left: 3%;
 }
-.tag-price{
+.tag-price {
   font-size: larger;
   padding-right: 6%;
   justify-content: flex-end;
   align-items: center;
 }
-.tag-name P{ align-items: center; justify-content: center;
+.tag-name P {
+  align-items: center;
+  justify-content: center;
   font-size: 20px;
   width: 100%;
   height: 100%;
+}
+.stock-message {
+  /* background-color: #cc0c39; */
+  color: #cc0c39;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0% 1%;
+  font-weight: bold;
+}
+#stock-info {
+  padding-top: 0px;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 14px;
+}
+/*EMPTY CART CONTENT*/
+.no-cart {
+  width: 100%;
+  height: 97%;
+  background: whitesmoke;
+  display: flex;
+  flex-direction: row;
+  padding: 2%;
+  
+}
+.no-cart-msg {
+  background: white;
+  width: 100%;
+  height: 20%;
+  margin-bottom: 3%;
+}
+.empty-div {
+  margin-bottom: 1%;
+  width: 100%;
+  height: 20%;
+  background: white;
+
+}
+.empty-msg {
+  height: 42%;
+  font-size: 35px;
+  font-weight: bolder;
+  padding: 1%;
+}
+.empty-cart-description{
+  height: 55%;
+  font-size: 18px;
+  padding: 1%;
+}
+.no-cart-heading{
+  height: 38%;
+  font-size: 30px;
+  padding: 2%;
+  font-weight: bold;
+}
+.no-cart-description{
+  height: 62%;
+  display: flex;
+  align-items: center;
+  padding: 1%;
+  font-size: 20px;
+}
+.subscription-details{
+  width: 100%;
+  height: 15%;
+  font-size: 18px;
+}
+.left-section{
+  width: 70%;
+  height: 100%;
+  /* background-color: #cc0c39; */
+}
+.right-section{
+  width: 25%;
+  height: 100%;
+  background-color: white;
+  margin: 0 2%;
+  border-radius: 16px;
+}
+.recommendations{
+  height: 7%;
+  font-size: large;
+  display: flex;
+  align-items: center;
+  padding-left: 2%;
+  margin: 1%;
 }

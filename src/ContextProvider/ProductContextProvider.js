@@ -8,7 +8,6 @@ function ProductContextProvider({ children }) {
     fetchProducts();
   }, []);
   const fetchProducts = async () => {
-    console.log("Fetch products Method........");
     try {
       const response = await fetch(
         "http://localhost:8080/filemanagement/fetchProducts"
@@ -21,14 +20,11 @@ function ProductContextProvider({ children }) {
       const data = await response.json();
 
       if (data.length === 0) {
-        console.log("No products Available");
         return;
       }
 
       setProductList(data);
-      console.log("Data Fetched From DB: ", data);
     } catch (error) {
-      console.log(error.message);
     }
   };
 
