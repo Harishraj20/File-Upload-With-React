@@ -1,5 +1,5 @@
 import {library} from "@fortawesome/fontawesome-svg-core";
-import {faPlus, faMinus,faTrash,faArrowRight,faX} from "@fortawesome/free-solid-svg-icons";
+import {faPlus, faMinus,faTrash,faArrowRight,faX,faLocationDot,faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
-
-library.add(faPlus, faMinus,faTrash,faArrowRight,faX)
+library.add(faPlus, faMinus,faTrash,faArrowRight,faX, faLocationDot, faMagnifyingGlass, faCartShopping)

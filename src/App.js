@@ -10,6 +10,9 @@ import ProductInfo from "./Components/ProductInfo";
 function App() {
   return (
     <div className="App">
+
+
+      
       {/* <h2>REACT BASICS</h2> */}
       <BrowserRouter>
         <Routes>

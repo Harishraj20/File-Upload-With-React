@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import "../Styles/cart.css";
-import ProductContext from "../Context/Context";
 import PaymentComponent from "./PaymentComponent";
 import EmptyCart from "./EmptyCart";
-
+import { ProductContext } from "../Context/Context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Cart() {
@@ -15,7 +14,10 @@ function Cart() {
     console.log("Im called");
     const loadProducts = async () => {
       const cartProducts = localStorage.getItem("cart");
-      setCartList(JSON.parse(cartProducts) || []);
+      const parsedList = cartProducts ? JSON.parse(cartProducts) : [];
+
+      console.log("Use effect's cart value: ", cartProducts);
+      setCartList(parsedList);
       await fetchProducts();
     };
 
@@ -38,8 +40,8 @@ function Cart() {
 
   useEffect(() => {
     console.log("Im called - 3");
-    if (cartList.length > 0)
-      localStorage.setItem("cart", JSON.stringify(cartList));
+
+    localStorage.setItem("cart", JSON.stringify(cartList));
   }, [cartList]);
 
   const calculateDiscount = (discountValue, costPrice) => {
@@ -147,12 +149,40 @@ function Cart() {
       })
     );
   };
+  const handleCart = (id) => {
+    console.log(`Cart method called! for product ${id}`);
+    const product = productList.find((prod) => prod.id === id);
+
+    if (product.quantity === 0) {
+      console.log("Out of stock!");
+      return;
+    }
+    setCartList((prevState) => {
+      const existingCartItem = prevState.find((element) => element.id === id);
+
+      let updatedCart;
+      if (existingCartItem) {
+        console.log("Already in the cart! Increasing quantity...");
+
+        updatedCart = prevState.map((prod) =>
+          prod.id === id ? { ...prod, qty: prod.qty + 1 } : prod
+        );
+      } else {
+        console.log("Adding new product to the cart...");
+
+        updatedCart = [...prevState, { ...product, qty: 1 }];
+      }
+
+      synchronizeCart(updatedCart);
+      return updatedCart;
+    });
+  };
 
   return (
     <div className="cart-div">
       <p className="cart-title">CART PAGE</p>
       {cartList.length === 0 ? (
-        <EmptyCart/>
+        <EmptyCart addToCart={handleCart} />
       ) : (
         <div className="cart-holder">
           <div className="cart-list">
