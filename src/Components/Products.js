@@ -1,9 +1,36 @@
 import React, { useEffect, useState } from "react";
-
+import "../Styles/Home.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 function Products() {
   const [products, setProducts] = useState([]);
   const [prodMsg, setProdMsg] = useState("");
   const [cart, setCart] = useState([]);
+
+  const generateDeliveryTime = () => {
+    const date = new Date();
+
+    const newDate = new Date(date);
+    newDate.setDate(date.getDate() + Math.floor(Math.random() * 6) + 2);
+    const formattedDate = newDate.toLocaleDateString(undefined, {
+      weekday: "short",
+      day: "2-digit",
+      month: "short",
+    });
+    return formattedDate;
+  };
+  const calculateDiscountedVal = (discountValue, costPrice) => {
+    const discountedAmount = costPrice * (discountValue / 100);
+    const discountedPrice = costPrice - discountedAmount;
+
+    const formattedPrice = discountedPrice.toLocaleString("en-IN", {
+      style: "currency",
+      currency: "INR",
+    });
+
+    console.log(formattedPrice);
+    return formattedPrice.split("₹")[1].split(".")[0];
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -80,8 +107,7 @@ function Products() {
     });
   };
   return (
-    <>
-      <h2 className="title">PRODUCTS LIST</h2>
+    <div className="home-page">
       <p style={{ color: "green" }} className="cart-message">
         {prodMsg}
       </p>
@@ -90,28 +116,54 @@ function Products() {
           products
             .filter((prod) => prod.quantity > 0)
             .map((prod, index) => (
-              <div className="product-card" key={index}>
+              <div className="product-card" key={prod.id}>
                 <div className="img-container">
                   <img
                     src={`http://localhost:8080/filemanagement/${
                       prod.imagePath.split("uploads/")[1]
                     }`}
                     alt={prod.prodName}
+                    className="product-card-image"
                   />
                 </div>
                 <div className="content-holder">
-                  <p className="product-name">
-                    Name: <span>{prod.productName}</span>
-                  </p>
-                  <p className="product-quantity">
-                    Quantity: <span>{prod.quantity}</span>
-                  </p>
-                  <button
-                    className="add-to-cart"
-                    onClick={() => handleCart(prod.id)}
-                  >
-                    Add To Cart
-                  </button>
+                  <div className="product-name-holder">
+                    <p className="product-name">{prod.productDescription}</p>
+                  </div>
+                  <div className="star-rating">
+                    {Array.from({ length: 5 }, (_, index) => (
+                      <FontAwesomeIcon
+                        key={index}
+                        icon={
+                          index < prod.starRating
+                            ? "fa-solid fa-star"
+                            : faStarRegular
+                        }
+                        style={{ color: "#f49510" }}
+                      />
+                    ))}
+                  </div>
+
+                  <div className="price-detailing">
+                    <span className="price-symbol">₹</span>
+                    <p className="dicount-price">
+                      {calculateDiscountedVal(prod.discount, prod.mrp)}
+                    </p>
+                    <p className="actual-cost">M.R.P: ₹{prod.mrp}</p>
+                    <p className="discount-value">({prod.discount}% off)</p>
+                  </div>
+                  <div className="delivery-time">
+                    FREE delivery <span>{generateDeliveryTime()}</span>
+                  </div>
+                  <div className="seller-info">sold by: {prod.seller}</div>
+                  <div className="product-cart-container">
+                    <button
+                      className="add-to-cart"
+                      onClick={() => handleCart(prod.id)}
+                    >
+                      Add To Cart
+                    </button>
+                  </div>
                 </div>
               </div>
             ))
@@ -119,7 +171,7 @@ function Products() {
           <p>No products available</p>
         )}
       </div>
-    </>
+    </div>
   );
 }
 

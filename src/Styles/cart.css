@@ -259,7 +259,7 @@
   justify-content: center;
 }
 
-span {
+.actual-mrp-span {
   margin-left: 10px;
   text-decoration: line-through;
 }

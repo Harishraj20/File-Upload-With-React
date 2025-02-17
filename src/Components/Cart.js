@@ -320,7 +320,7 @@ function Cart() {
                     </div>
                     <div className="actual-mrp">
                       M.R.P:{" "}
-                      <span>
+                      <span className="actual-mrp-span">
                         {" "}
                         {Math.floor(cartItem.mrp).toLocaleString("en-EN", {
                           style: "currency",
