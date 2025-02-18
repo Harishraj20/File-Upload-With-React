@@ -2,7 +2,7 @@ import { createContext } from "react";
 
 
 const ProductContext = createContext();
-// const CartContext = createContext();
+const CartContext = createContext();
 
 
-export  {ProductContext};
+export  {ProductContext,CartContext};

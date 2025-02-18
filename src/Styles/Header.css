@@ -29,6 +29,7 @@
 .orders-summary:hover,
 .cart-icon:hover {
   border: 1px solid white;
+  cursor: pointer;
 }
 
 .logo-png {
@@ -184,10 +185,9 @@ input.search-input:focus {
 .search-list {
   border: 1px solid #bbb;
   width: 33.35%;
-  height:auto;
-  max-height: 38%;
+  height: auto;
   background-color: white;
-  top: 7.3%;
+  top: 74.3%;
   left: 31.7%;
   position: absolute;
 }

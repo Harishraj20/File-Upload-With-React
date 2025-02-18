@@ -1,12 +1,20 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import "../Styles/Header.css";
 import amazonIcon from "../Assests/amazon.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {useNavigate } from "react-router-dom";
+import { CartContext } from "../Context/Context";
 
 function Header() {
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [showResults, setShowResults] = useState(false);
+  const {calculateCartCount} = useContext(CartContext);
+
+
+
+
+  const navigate = useNavigate();
 
   const searchRef = useRef(null);
 
@@ -52,7 +60,7 @@ function Header() {
 
   return (
     <div className="header">
-      <div className="logo-png">
+      <div className="logo-png" onClick={()=>navigate("/")}>
         <img src={amazonIcon} alt="amazon" />
       </div>
       <div className="user-location">
@@ -112,11 +120,11 @@ function Header() {
         <div className="acc-listing">Account & Lists</div>
       </div>
       <div className="orders-summary">Orders & Returns</div>
-      <div className="cart-icon">
+      <div className="cart-icon" onClick={()=> navigate("/cart")}>
         <div className="cart-icon-tag">
           <FontAwesomeIcon icon="fa-solid fa-cart-shopping" size="2xl" />
         </div>
-        <div className="cart-count-div">80</div>
+        <div className="cart-count-div">{calculateCartCount()}</div>
         <div className="cart-name-tag">Cart</div>
       </div>
     </div>

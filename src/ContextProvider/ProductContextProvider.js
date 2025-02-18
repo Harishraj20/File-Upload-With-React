@@ -7,6 +7,7 @@ function ProductContextProvider({ children }) {
   useEffect(() => {
     fetchProducts();
   }, []);
+
   const fetchProducts = async () => {
     try {
       const response = await fetch(
@@ -24,11 +25,14 @@ function ProductContextProvider({ children }) {
       }
 
       setProductList(data);
-    } catch (error) {
-    }
+    } catch (error) { }
   };
 
-  return <ProductContext.Provider value={{productList,setProductList, fetchProducts}}>{children}</ProductContext.Provider>;
+  return (
+    <ProductContext.Provider value={{ productList, setProductList, fetchProducts }}>
+      {children}
+    </ProductContext.Provider>
+  );
 }
 
 export default ProductContextProvider;
