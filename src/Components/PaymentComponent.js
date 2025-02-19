@@ -10,7 +10,7 @@ const PaymentComponent = ({actualCartPrice,totalCartDiscountPercent,finalCartAmo
         <div className='total-amount'>{finalCartAmount}</div>
         <div className='actual-amount'>{actualCartPrice}</div>
         <div className='overall-discount'>{totalCartDiscountPercent}% off</div>
-        <div className='proceed-to-pay-div'><button className='payment-button'>Procced to Checkout {" "}<FontAwesomeIcon icon="fa-solid fa-arrow-right" size="lg" className='checkout-icon'/></button></div>
+        <div className='proceed-to-pay-div'><button className='payment-button'>Procced to Checkout {" "}<FontAwesomeIcon icon="fa-solid fa-arrow-right" size="sm" className='checkout-icon'/></button></div>
 
 
     </div>

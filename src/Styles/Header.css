@@ -84,6 +84,7 @@
 }
 
 select.select-field {
+  outline: none;
   padding: 1%;
   font-size: large;
   background-color: #e6e6e6;
@@ -169,6 +170,7 @@ input.search-input:focus {
 }
 
 .cart-count-div {
+  padding: 10px 5px;
   top: 20px;
   left: 94%;
   position: absolute;
@@ -182,6 +184,7 @@ input.search-input:focus {
   align-items: center;
   font-weight: bold;
 }
+
 .search-list {
   border: 1px solid #bbb;
   width: 33.35%;
@@ -201,11 +204,12 @@ input.search-input:focus {
   color: black;
   font-size: large;
 }
+
 .result-div:hover {
   background-color: rgb(207, 207, 207);
 }
+
 .search-icon {
   margin-right: 3%;
   margin-left: 1%;
 }
-

@@ -30,6 +30,14 @@ html {
   width: 100%;
   /* height: 100%; */
 }
+.product-info-detail {
+  min-height: 873px;
+  padding-top: 7%;
+}
+.product-info-detail div{
+  font-size: large;
+  margin: 1%;
+}
 h2 {
   height: 4%;
   display: flex;

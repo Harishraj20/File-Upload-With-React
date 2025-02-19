@@ -59,6 +59,7 @@
 
 .desc-detail {
   /* height: 30%; */
+  cursor: pointer;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;

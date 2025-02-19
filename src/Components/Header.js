@@ -76,7 +76,7 @@ function Header() {
       </div>
       <div className="search-field" ref={searchRef}>
         <div className="search-holder">
-          <select name="" id="" className="select-field">
+          <select name="" id="" className="select-field" disabled>
             <option value="all">all</option>
             <option value="television">television fgyheyuyr</option>
           </select>

@@ -1,15 +1,17 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import "../Styles/cart.css";
 import PaymentComponent from "./PaymentComponent";
 import EmptyCart from "./EmptyCart";
-import {CartContext } from "../Context/Context";
+import { CartContext } from "../Context/Context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router-dom";
 
 function Cart() {
 
-
-  const{
-    calculateCartCount,calculateDiscount,
+  const navigate = useNavigate();
+  const {
+    calculateCartCount,
+    calculateDiscount,
     totalDiscountedPercent,
     cartList,
     decrementCart,
@@ -19,14 +21,14 @@ function Cart() {
     toolTipId,
     setToolTipId,
     setIsDivOpen,
-    calculateCartTotal,calculateActualAmount
+    calculateCartTotal,
+    calculateActualAmount,
   } = useContext(CartContext);
 
-console.log("cart length: ",cartList.length);
+  console.log("cart length: ", cartList.length);
   return (
     <div className="cart-div">
-      {
-      cartList.length === 0 ? (
+      {cartList.length === 0 ? (
         <EmptyCart addToCart={handleCart} />
       ) : (
         <div className="cart-holder">
@@ -41,14 +43,13 @@ console.log("cart length: ",cartList.length);
                   <div className="image-holder">
                     <img
                       className="cart-img"
-                      src={`http://localhost:8080/filemanagement/${
-                        cartItem.imagePath.split("uploads/")[1]
-                      }`}
+                      src={`http://localhost:8080/filemanagement/${cartItem.imagePath.split("uploads/")[1]
+                        }`}
                       alt={cartItem.productDescription}
                     />
                   </div>
                   <div className="desc-holder">
-                    <div className="desc-detail">
+                    <div className="desc-detail" onClick={() => navigate(`/product/${cartItem.id}`)}>
                       <p className="prod-desc">{cartItem.productDescription}</p>
                     </div>
                     <div className="other-details">
@@ -58,11 +59,11 @@ console.log("cart length: ",cartList.length);
                         style={
                           cartItem.status
                             ? {
-                                color: "#007600",
-                              }
+                              color: "#007600",
+                            }
                             : {
-                                color: "red",
-                              }
+                              color: "red",
+                            }
                         }
                       >
                         {cartItem.status ? "IN STOCK" : "OUT OF STOCK"}

@@ -3,10 +3,12 @@ import "../Styles/Home.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 import { CartContext } from "../Context/Context";
+import { useNavigate } from "react-router-dom";
 
 function Products() {
   const { handleCart, productList, calculateDiscount } = useContext(CartContext);
   const [prodMsg, setProdMsg] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     setTimeout(() => { setProdMsg(""); }, 5000);
@@ -33,7 +35,7 @@ function Products() {
           productList
             .filter((prod) => prod.quantity > 0)
             .map((prod) => (
-              <div className="product-card" key={prod.id}>
+              <div className="product-card" key={prod.id} >
                 <div className="img-container">
                   <img
                     src={`http://localhost:8080/filemanagement/${prod.imagePath.split("uploads/")[1]
@@ -43,7 +45,7 @@ function Products() {
                   />
                 </div>
                 <div className="content-holder">
-                  <div className="product-name-holder">
+                  <div className="product-name-holder" onClick={() => navigate(`/product/${prod.id}`)}>
                     <p className="product-name">{prod.productDescription}</p>
                   </div>
                   <div className="star-rating">
@@ -80,7 +82,8 @@ function Products() {
                       className="add-to-cart"
                       onClick={() => {
                         setProdMsg("Item added to cart")
-                         handleCart(prod.id) }}
+                        handleCart(prod.id)
+                      }}
                     >
                       Add To Cart
                     </button>
