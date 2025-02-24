@@ -10,6 +10,7 @@ function Products() {
   const [prodMsg, setProdMsg] = useState("");
   const navigate = useNavigate();
 
+
   useEffect(() => {
     setTimeout(() => { setProdMsg(""); }, 5000);
   }, [prodMsg]);
@@ -70,8 +71,16 @@ function Products() {
                         currency: "INR",
                       }).split("₹")[1].split(".")[0]}
                     </p>
-                    <p className="actual-cost">M.R.P: ₹{prod.mrp}</p>
-                    <p className="discount-value">({prod.discount}% off)</p>
+                    {
+                      prod.discount === 0 ? "" : (
+                        <div className="price-listing"> 
+                          <p className="actual-cost">M.R.P: ₹{prod.mrp}</p>
+                          <p className="discount-value">({prod.discount}% off)</p>
+                          </div>
+                      )
+                    }
+                    {/* <p className="actual-cost">M.R.P: ₹{prod.mrp}</p>
+                    <p className="discount-value">({prod.discount}% off)</p> */}
                   </div>
                   <div className="delivery-time">
                     FREE delivery <span>{generateDeliveryTime(prod.deliveryday)}</span>

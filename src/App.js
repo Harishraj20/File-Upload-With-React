@@ -6,18 +6,19 @@ import "./Configs/FontAwesome.config";
 import ProductInfo from "./Components/ProductInfo";
 import Layout from "./Layout/Layout";
 import ProductDetail from "./Components/ProductDetails";
+import UpLoads from "./Components/UpLoads";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          {/* <Route path="/productInfo" element={<ProductInfo />} /> */}
           <Route path="/" element={<Layout />}>
             <Route path="/" element={<Products />} />
+            <Route path="/uploads" element={<UpLoads />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/productInfo" element={<ProductInfo />} />
-            <Route path="/product/:id" element={<ProductDetail/>}/>
+            <Route path="/product/:id" element={<ProductDetail />} />
           </Route>
         </Routes>
       </BrowserRouter>

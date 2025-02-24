@@ -119,8 +119,8 @@ input.search-input:focus {
 
 .search-holder {
   background-color: #fff;
-  width: 95%;
-  height: 50%;
+  width: 100%;
+  height: 100%;
   border-radius: 4px;
   overflow: hidden;
 }
@@ -212,4 +212,11 @@ input.search-input:focus {
 .search-icon {
   margin-right: 3%;
   margin-left: 1%;
+}
+.search-form{
+  background-color: #fff;
+  width: 95%;
+  height: 50%;
+  border-radius: 4px;
+  overflow: hidden;
 }

@@ -1,9 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { CartContext } from "../Context/Context";
+import { useNavigate } from "react-router-dom";
 
-const EmptyCart = ({ addToCart }) => {
+const EmptyCart = ({ addToCart, saveForLater, setSaveForLater }) => {
   const [recommendedProducts, setRecommendedProducts] = useState([]);
+  const { calculateDiscount, setCartList } = useContext(CartContext);
+  const navigate = useNavigate();
+
+  const moveToCart = (prod) => {
+    console.log(prod);
+    setCartList((prevState) => [...prevState, prod]);
+    setSaveForLater((prevState) => {
+      const filterSaveForLater = prevState.filter(
+        (product) => product.id !== prod.id
+      );
+      return filterSaveForLater;
+    });
+  };
 
   useEffect(() => {
+    console.log("Empty cart Use effect runs,");
     const fetchRecommendedProducts = async () => {
       try {
         const response = await fetch(
@@ -14,7 +30,6 @@ const EmptyCart = ({ addToCart }) => {
         }
         const data = await response.json();
         setRecommendedProducts(data);
-        console.log("Fetched recommended products:", data);
       } catch (error) {
         console.log(error.message);
       }
@@ -33,16 +48,90 @@ const EmptyCart = ({ addToCart }) => {
           >
             Your Cart is empty
           </p>
-          <p className="empty-cart-description">
-            Your shopping cart is waiting. Give it purpose - fill it wilh
-            groceries, clothing, household supplies, electronics and more.
-            Continue shopping on the Homepage, learn about today's deals, or
-            visit your Wish List.
-          </p>
+
+          {saveForLater.length === 0 ? (
+            <p className="saveforlater-description">
+              Your shopping cart is waiting. Give it purpose - fill it wilh
+              groceries, clothing, household supplies, electronics and more.
+              Continue shopping on the Homepage, learn about today's deals, or
+              visit your Wish List.
+            </p>
+          ) : (
+            <div className="save-for-later-text">
+              <p
+                className="empty-cart-description"
+                onClick={() =>
+                  navigate(
+                    `/product/${saveForLater[saveForLater.length - 1].id}`
+                  )
+                }
+              >
+                {saveForLater[saveForLater.length - 1].productDescription}
+              </p>
+              <span className="save-for-later-text-span">
+                has been moved to Save For Later.
+              </span>
+            </div>
+          )}
         </div>
         <div className="empty-div">
-          <div className="no-cart-heading">Your Items</div>
-          <div className="no-cart-description">No Items saved for Later</div>
+          <div className="no-cart-heading">Your Items (Saved For Later)</div>
+          <div className="no-cart-description">
+            {saveForLater.length > 0 ? (
+              saveForLater
+                .filter((prod) => prod.quantity > 0)
+                .map((prod) => (
+                  <div className="product-card-container" key={prod.id}>
+                    <div className="image-wrapper">
+                      <img
+                        src={`http://localhost:8080/filemanagement/${
+                          prod.imagePath.split("uploads/")[1]
+                        }`}
+                        alt={prod.prodName}
+                        className="product-image"
+                      />
+                    </div>
+                    <div className="product-details">
+                      <div
+                        className="product-title"
+                        onClick={() => navigate(`/product/${prod.id}`)}
+                      >
+                        <p className="product-description">
+                          {prod.productDescription}
+                        </p>
+                      </div>
+                      <div className="pricing-info">
+                        <span className="currency-symbol">₹</span>
+                        <p className="discounted-price">
+                          {
+                            calculateDiscount(prod.discount, prod.mrp)
+                              .toLocaleString("en-IN", {
+                                style: "currency",
+                                currency: "INR",
+                              })
+                              .split("₹")[1]
+                              .split(".")[0]
+                          }
+                        </p>
+                      </div>
+                      <div className="vendor-info">Sold by: {prod.seller}</div>
+                      <div className="cart-action">
+                        <button
+                          className="add-to-cart-button"
+                          onClick={() => {
+                            moveToCart(prod);
+                          }}
+                        >
+                          Move To Cart
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))
+            ) : (
+              <p>No Items saved for Later</p>
+            )}
+          </div>
         </div>
         <div className="subscription-details">
           The price and availabity of items are subject to change. The shopping
