@@ -5,6 +5,7 @@ import EmptyCart from "./EmptyCart";
 import { CartContext } from "../Context/Context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
+import SaveForLater from "./SaveForLater";
 
 function Cart() {
   const navigate = useNavigate();
@@ -38,7 +39,9 @@ function Cart() {
       return filteredCart;
     });
     setSaveForLater((prevState) => {
-      console.log("save for later updated..............");
+      const existingproduct = prevState.find((element) => element.id === id);
+
+      if (existingproduct) return [...prevState];
       return [...prevState, productForLater];
     });
   };
@@ -74,9 +77,8 @@ function Cart() {
                     <div className="image-holder">
                       <img
                         className="cart-img"
-                        src={`http://localhost:8080/filemanagement/${
-                          cartItem.imagePath.split("uploads/")[1]
-                        }`}
+                        src={`http://localhost:8080/filemanagement/${cartItem.imagePath.split("uploads/")[1]
+                          }`}
                         alt={cartItem.productDescription}
                       />
                     </div>
@@ -96,11 +98,11 @@ function Cart() {
                           style={
                             cartItem.status
                               ? {
-                                  color: "#007600",
-                                }
+                                color: "#007600",
+                              }
                               : {
-                                  color: "red",
-                                }
+                                color: "red",
+                              }
                           }
                         >
                           {cartItem.status ? "IN STOCK" : "OUT OF STOCK"}
@@ -180,7 +182,6 @@ function Cart() {
                           <button
                             className="act-btns"
                             onClick={() => {
-                              console.log("ran randomly");
                               handleSaveForLater(cartItem.id);
                             }}
                           >
@@ -240,6 +241,12 @@ function Cart() {
                 })}
               </div>
             </div>
+
+            <SaveForLater
+              productList={saveForLater}
+              saveForLater={saveForLater}
+              setSaveForLater={setSaveForLater}
+            />
           </div>
           <div className="payment-section">
             <PaymentComponent

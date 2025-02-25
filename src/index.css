@@ -124,3 +124,24 @@ p.discounted-price {
   font-size: larger;
   font-weight: bold;
 }
+
+
+
+
+
+
+
+.product-card-container {
+  border: 1px solid rgb(223, 223, 223);
+  min-width: 220px;
+  margin: 1%;
+  padding: 1% 2%;
+  height: 90%;
+  flex: 1 1 250px;
+  display: flex;
+  flex-direction: column; 
+}
+.overall-holder{
+  height: 100%;
+  padding-left: 3%;
+}

@@ -10,7 +10,7 @@
   justify-content: center;
   align-items: center;
   margin: 2%;
-  width: 28%;
+  width: 20%;
   max-height: 230px;
   background-color: rgb(255, 255, 255);
   position: sticky;
@@ -23,7 +23,6 @@
   font-size: 20px;
   width: 95%;
   height: 10%;
-  /* font-size: medium; */
   display: flex;
   align-items: center;
 }
