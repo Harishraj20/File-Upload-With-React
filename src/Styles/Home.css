@@ -33,7 +33,6 @@
   display: flex;
 }
 .product-holder {
-  overflow: auto;
   margin: 0 2%;
   height: 93%;
   display: flex;

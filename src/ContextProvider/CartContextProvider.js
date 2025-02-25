@@ -8,7 +8,6 @@ function CartContextProvider({ children }) {
   const [toolTipId, setToolTipId] = useState("");
 
   useEffect(() => {
-    console.log("cart context calledddd......");
     const loadProducts = async () => {
       const cartProducts = localStorage.getItem("cart");
       const parsedList = cartProducts ? JSON.parse(cartProducts) : [];
@@ -113,7 +112,6 @@ function CartContextProvider({ children }) {
     const product = productList.find((prod) => prod.id === id);
 
     if (product.quantity === 0) {
-      console.log("returned");
       return;
     }
 

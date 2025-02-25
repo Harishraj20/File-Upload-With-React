@@ -1,7 +1,6 @@
 .cart-holder {
   width: 100%;
   min-height: 719px;
-  /* background-color: rgb(250, 247, 247); */
   display: flex;
 }
 
@@ -56,7 +55,6 @@
 }
 
 .desc-detail {
-  /* height: 30%; */
   cursor: pointer;
   overflow: hidden;
   display: -webkit-box;
@@ -186,7 +184,6 @@
   color: #0066c0;
   font-size: small;
   border-right: 1px solid #999;
-  /* Vertical line */
 }
 
 .act-btns:hover {
@@ -388,7 +385,6 @@
 .left-section {
   width: 70%;
   height: 100%;
-  /* background-color: #cc0c39; */
 }
 
 .right-section {
@@ -398,6 +394,8 @@
   margin: 0 2%;
   padding: 1%;
   border-radius: 8px;
+  overflow: hidden;
+  max-height: 950px;
 }
 
 .recommendations {

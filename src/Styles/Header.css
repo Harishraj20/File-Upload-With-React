@@ -213,10 +213,18 @@ input.search-input:focus {
   margin-right: 3%;
   margin-left: 1%;
 }
-.search-form{
+.search-form {
   background-color: #fff;
   width: 95%;
   height: 50%;
   border-radius: 4px;
   overflow: hidden;
+}
+.empty {
+  display: flex;
+  font-size: large;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  color: #000000;
 }

@@ -3,6 +3,7 @@ import { ProductContext } from "../Context/Context";
 
 function ProductContextProvider({ children }) {
   const [productList, setProductList] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
     fetchProducts();
@@ -25,11 +26,12 @@ function ProductContextProvider({ children }) {
       }
 
       setProductList(data);
+      setFilteredProducts(data);
     } catch (error) { }
   };
 
   return (
-    <ProductContext.Provider value={{ productList, setProductList, fetchProducts }}>
+    <ProductContext.Provider value={{ productList, setProductList, fetchProducts, filteredProducts, setFilteredProducts }}>
       {children}
     </ProductContext.Provider>
   );

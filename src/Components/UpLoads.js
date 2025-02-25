@@ -8,7 +8,7 @@ function UpLoads() {
     capacity: "",
     starRating: 1,
     technology: "",
-    stockStatus: "",
+    brand: "",
     seller: "",
     discount: 0,
     offer: "",
@@ -21,7 +21,6 @@ function UpLoads() {
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
-
 
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
@@ -48,7 +47,7 @@ function UpLoads() {
     const formDatas = new FormData();
 
     Object.entries(formData).forEach(([key, value]) => {
-      console.log(key, value)
+      console.log(key, value);
       formDatas.append(key, value);
     });
 
@@ -172,17 +171,15 @@ function UpLoads() {
         </div>
 
         <div className="input-holder">
-          <label>Stock Status:</label>
-          <select
-            name="stockStatus"
-            value={formData.stockStatus}
+          <label>Brand:</label>
+          <input
+            type="text"
+            name="brand"
+            value={formData.brand}
+            placeholder="Enter Brand"
             onChange={handleOnChange}
             required
-          >
-            <option value="">Select</option>
-            <option value="In Stock">In Stock</option>
-            <option value="Out of Stock">Out of Stock</option>
-          </select>
+          />
         </div>
 
         <div className="input-holder">

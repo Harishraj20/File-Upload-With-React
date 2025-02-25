@@ -6,44 +6,46 @@ import { useNavigate } from "react-router-dom";
 import { CartContext, ProductContext } from "../Context/Context";
 
 function Header() {
-  const { setProductList } = useContext(ProductContext);
+  const { setFilteredProducts, productList } = useContext(ProductContext);
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [showResults, setShowResults] = useState(false);
   const { calculateCartCount } = useContext(CartContext);
 
-
-
-
-
   const handleSearchSubmit = (e) => {
-    console.log("Triggered......")
     e.preventDefault();
     if (!search.trim()) {
       return;
     }
     setShowResults(false);
-    setProductList(searchResult);
+    setFilteredProducts(searchResult);
   };
   const navigate = useNavigate();
 
   const searchRef = useRef(null);
 
   const handleSearchField = async (e) => {
-    console.log("Triggered......2")
     const value = e.target.value;
     setSearch(value);
     await fetchSearchResults(value);
     setShowResults(true);
   };
 
+
+  const navigateToHomePage = () => {
+    setSearch("");
+    setSearchResult([]);
+    setFilteredProducts(productList);
+    navigate("/")
+  }
+
   const fetchSearchResults = async (query) => {
-    console.log("the received query......")
     if (!query.trim()) {
+      setShowResults(false);
+      setFilteredProducts(productList);
       setSearchResult([]);
       return;
     }
-
     try {
       const response = await fetch(
         `http://localhost:8080/filemanagement/search?val=${query}`
@@ -57,22 +59,17 @@ function Header() {
       console.error("Error fetching search results:", error);
     }
   };
-
   const handleClickOutside = (e) => {
     if (searchRef.current && !searchRef.current.contains(e.target)) {
       setShowResults(false);
     }
   };
-
   const handleProductSelect = (product) => {
     console.log(product.productName);
     setSearch(product.productName)
-    setProductList([product]);
+    setFilteredProducts([product]);
     setShowResults(false);
   }
-
-
-
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
@@ -82,7 +79,7 @@ function Header() {
 
   return (
     <div className="header">
-      <div className="logo-png" onClick={() => navigate("/")}>
+      <div className="logo-png" onClick={() => navigateToHomePage()}>
         <img src={amazonIcon} alt="amazon" />
       </div>
       <div className="user-location">
@@ -140,7 +137,7 @@ function Header() {
               </div>
             )}
             {showResults && searchResult.length === 0 && search.trim() && (
-              <div className="search-list">No Results</div>
+              <div className="search-list empty">No Results</div>
             )}
           </div>
         </form>

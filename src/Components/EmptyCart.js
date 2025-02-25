@@ -1,23 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
-import { CartContext } from "../Context/Context";
+import React, {useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SaveForLater from "./SaveForLater";
 
 const EmptyCart = ({ addToCart, saveForLater, setSaveForLater }) => {
   const [recommendedProducts, setRecommendedProducts] = useState([]);
-  const { setCartList } = useContext(CartContext);
   const navigate = useNavigate();
-
-  const moveToCart = (prod) => {
-    console.log(prod);
-    setCartList((prevState) => [...prevState, prod]);
-    setSaveForLater((prevState) => {
-      const filterSaveForLater = prevState.filter(
-        (product) => product.id !== prod.id
-      );
-      return filterSaveForLater;
-    });
-  };
 
   useEffect(() => {
     console.log("Empty cart Use effect runs,");

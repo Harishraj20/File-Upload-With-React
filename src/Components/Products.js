@@ -2,17 +2,29 @@ import React, { useContext, useEffect, useState } from "react";
 import "../Styles/Home.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
-import { CartContext } from "../Context/Context";
+import { CartContext,ProductContext } from "../Context/Context";
 import { useNavigate } from "react-router-dom";
 
 function Products() {
-  const { handleCart, productList, calculateDiscount } = useContext(CartContext);
+  const { handleCart,calculateDiscount} =
+    useContext(CartContext);
+    const {filteredProducts } =
+    useContext(ProductContext);
   const [prodMsg, setProdMsg] = useState("");
   const navigate = useNavigate();
 
 
+useEffect(()=>{
+ console.log("useeffect called......")
+},[])
+
+
+
+
   useEffect(() => {
-    setTimeout(() => { setProdMsg(""); }, 5000);
+    setTimeout(() => {
+      setProdMsg("");
+    }, 5000);
   }, [prodMsg]);
 
   const generateDeliveryTime = (value) => {
@@ -32,21 +44,25 @@ function Products() {
     <div className="home-page">
       {prodMsg && <p className="cart-message">{prodMsg}</p>}
       <div className="product-holder">
-        {productList.length > 0 ? (
-          productList
+        {filteredProducts.length > 0 ? (
+          filteredProducts
             .filter((prod) => prod.quantity > 0)
             .map((prod) => (
-              <div className="product-card" key={prod.id} >
+              <div className="product-card" key={prod.id}>
                 <div className="img-container">
                   <img
-                    src={`http://localhost:8080/filemanagement/${prod.imagePath.split("uploads/")[1]
-                      }`}
+                    src={`http://localhost:8080/filemanagement/${
+                      prod.imagePath.split("uploads/")[1]
+                    }`}
                     alt={prod.prodName}
                     className="product-card-image"
                   />
                 </div>
                 <div className="content-holder">
-                  <div className="product-name-holder" onClick={() => navigate(`/product/${prod.id}`)}>
+                  <div
+                    className="product-name-holder"
+                    onClick={() => navigate(`/product/${prod.id}`)}
+                  >
                     <p className="product-name">{prod.productDescription}</p>
                   </div>
                   <div className="star-rating">
@@ -66,32 +82,38 @@ function Products() {
                   <div className="price-detailing">
                     <span className="price-symbol">₹</span>
                     <p className="dicount-price">
-                      {calculateDiscount(prod.discount, prod.mrp).toLocaleString("en-IN", {
-                        style: "currency",
-                        currency: "INR",
-                      }).split("₹")[1].split(".")[0]}
+                      {
+                        calculateDiscount(prod.discount, prod.mrp)
+                          .toLocaleString("en-IN", {
+                            style: "currency",
+                            currency: "INR",
+                          })
+                          .split("₹")[1]
+                          .split(".")[0]
+                      }
                     </p>
-                    {
-                      prod.discount === 0 ? "" : (
-                        <div className="price-listing"> 
-                          <p className="actual-cost">M.R.P: ₹{prod.mrp}</p>
-                          <p className="discount-value">({prod.discount}% off)</p>
-                          </div>
-                      )
-                    }
+                    {prod.discount === 0 ? (
+                      ""
+                    ) : (
+                      <div className="price-listing">
+                        <p className="actual-cost">M.R.P: ₹{prod.mrp}</p>
+                        <p className="discount-value">({prod.discount}% off)</p>
+                      </div>
+                    )}
                     {/* <p className="actual-cost">M.R.P: ₹{prod.mrp}</p>
                     <p className="discount-value">({prod.discount}% off)</p> */}
                   </div>
                   <div className="delivery-time">
-                    FREE delivery <span>{generateDeliveryTime(prod.deliveryday)}</span>
+                    FREE delivery{" "}
+                    <span>{generateDeliveryTime(prod.deliveryday)}</span>
                   </div>
                   <div className="seller-info">sold by: {prod.seller}</div>
                   <div className="product-cart-container">
                     <button
                       className="add-to-cart"
                       onClick={() => {
-                        setProdMsg("Item added to cart")
-                        handleCart(prod.id)
+                        setProdMsg("Item added to cart");
+                        handleCart(prod.id);
                       }}
                     >
                       Add To Cart
