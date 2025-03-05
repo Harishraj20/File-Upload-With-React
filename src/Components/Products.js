@@ -2,24 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 import "../Styles/Home.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
-import { CartContext,ProductContext } from "../Context/Context";
+import { CartContext, ProductContext } from "../Context/Context";
 import { useNavigate } from "react-router-dom";
 
 function Products() {
-  const { handleCart,calculateDiscount} =
+  const { handleCart, calculateDiscount } =
     useContext(CartContext);
-    const {filteredProducts } =
+  const { filteredProducts } =
     useContext(ProductContext);
   const [prodMsg, setProdMsg] = useState("");
   const navigate = useNavigate();
-
-
-useEffect(()=>{
- console.log("useeffect called......")
-},[])
-
-
-
 
   useEffect(() => {
     setTimeout(() => {
@@ -51,9 +43,8 @@ useEffect(()=>{
               <div className="product-card" key={prod.id}>
                 <div className="img-container">
                   <img
-                    src={`http://localhost:8080/filemanagement/${
-                      prod.imagePath.split("uploads/")[1]
-                    }`}
+                    src={`http://localhost:8080/filemanagement/${prod.imagePath.split("uploads/")[1]
+                      }`}
                     alt={prod.prodName}
                     className="product-card-image"
                   />

@@ -26,18 +26,15 @@ function UpLoads() {
   };
 
   const [msg, setMsg] = useState("");
-  const [stats, setStats] = useState(false);
   const fileUploadRef = useRef(null);
 
   useEffect(() => {
     setTimeout(() => {
       setMsg("");
-      setStats(false);
     }, 10000);
   }, [msg]);
 
   const handleFileChange = (e) => {
-    console.log(e.target.files[0]);
     setImage(e.target.files[0]);
   };
 
@@ -47,7 +44,6 @@ function UpLoads() {
     const formDatas = new FormData();
 
     Object.entries(formData).forEach(([key, value]) => {
-      console.log(key, value);
       formDatas.append(key, value);
     });
 
@@ -68,7 +64,6 @@ function UpLoads() {
       }
 
       setMsg(data.message);
-      setStats(true);
       if (fileUploadRef.current) {
         fileUploadRef.current.value = "";
       }
@@ -79,7 +74,6 @@ function UpLoads() {
         capacity: "",
         starRating: 1,
         technology: "",
-        stockStatus: "",
         seller: "",
         discount: 0,
         offer: "",

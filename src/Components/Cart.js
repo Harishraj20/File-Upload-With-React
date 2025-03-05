@@ -46,12 +46,8 @@ function Cart() {
     });
   };
 
-  useEffect(() => {
-    console.log("me too");
-  }, []);
 
   useEffect(() => {
-    console.log("use effect to synchronize save for later with LS");
     localStorage.setItem("savedForLater", JSON.stringify(saveForLater));
   }, [saveForLater]);
 
@@ -234,8 +230,8 @@ function Cart() {
                 );
               })}
               <div className="subtotal-section">
-                Subtotal ({calculateCartCount()} Items) :{" "}
-                {calculateCartTotal().toLocaleString("en-IN", {
+                Subtotal ({calculateCartCount} Items) :{" "}
+                {calculateCartTotal.toLocaleString("en-IN", {
                   style: "currency",
                   currency: "INR",
                 })}
@@ -250,13 +246,13 @@ function Cart() {
           </div>
           <div className="payment-section">
             <PaymentComponent
-              totalItems={calculateCartCount()}
-              actualCartPrice={calculateActualAmount().toLocaleString("en-IN", {
+              totalItems={calculateCartCount}
+              actualCartPrice={calculateActualAmount.toLocaleString("en-IN", {
                 style: "currency",
                 currency: "INR",
               })}
-              totalCartDiscountPercent={totalDiscountedPercent()}
-              finalCartAmount={calculateCartTotal().toLocaleString("en-IN", {
+              totalCartDiscountPercent={totalDiscountedPercent}
+              finalCartAmount={calculateCartTotal.toLocaleString("en-IN", {
                 style: "currency",
                 currency: "INR",
               })}

@@ -7,7 +7,6 @@ function SaveForLater({ productList, setSaveForLater }) {
     const navigate = useNavigate();
 
     const moveToCart = (prod) => {
-        console.log(prod);
         setCartList((prevState) => [...prevState, prod]);
         setSaveForLater((prevState) => {
             const filterSaveForLater = prevState.filter(

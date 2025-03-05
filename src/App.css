@@ -4,10 +4,10 @@
   padding: 0%;
   margin: 0;
 }
-a{
+a {
   margin: 2%;
 }
-button{
+button {
   cursor: pointer;
 }
 .cart-message {
@@ -37,7 +37,7 @@ html {
   min-height: 873px;
   padding-top: 7%;
 }
-.product-info-detail div{
+.product-info-detail div {
   font-size: large;
   margin: 1%;
 }
@@ -57,20 +57,20 @@ h2 {
   margin: 15px;
 }
 
-.cart-div {background: whitesmoke;
+.cart-div {
+  background: whitesmoke;
   padding-top: 8%;
   height: 96%;
 }
-.cart-title{
+.cart-title {
   height: 7%;
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
-h2{
+h2 {
   margin-bottom: 2%;
 }
-.save-for-later-text-span{
+.save-for-later-text-span {
   font-size: large;
 }

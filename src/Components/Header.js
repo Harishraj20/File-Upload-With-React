@@ -65,7 +65,6 @@ function Header() {
     }
   };
   const handleProductSelect = (product) => {
-    console.log(product.productName);
     setSearch(product.productName)
     setFilteredProducts([product]);
     setShowResults(false);
@@ -151,7 +150,7 @@ function Header() {
         <div className="cart-icon-tag">
           <FontAwesomeIcon icon="fa-solid fa-cart-shopping" size="2xl" />
         </div>
-        <div className="cart-count-div">{calculateCartCount()}</div>
+        <div className="cart-count-div">{calculateCartCount}</div>
         <div className="cart-name-tag">Cart</div>
       </div>
     </div>

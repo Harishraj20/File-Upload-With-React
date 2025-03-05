@@ -5,13 +5,14 @@
   background-color: rgb(255, 255, 255);
   flex-direction: column;
 }
+
 .payment-section {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 2%;
   width: 24%;
-  max-height: 230px;
+  max-height: 270px;
   background-color: rgb(255, 255, 255);
   position: sticky;
   top: 50%;
@@ -19,6 +20,7 @@
 }
 
 .heading {
+  font-weight: bold;
   margin: 4%;
   font-size: 20px;
   width: 95%;
@@ -26,37 +28,52 @@
   display: flex;
   align-items: center;
 }
+
 .total-amount {
   font-size: 1.5em;
   font-weight: bold;
-  margin-left: 5%;
+  margin-left: 4%;
   margin-bottom: 2%;
   height: 15%;
   width: 95%;
 }
+
 .actual-amount {
-    margin-bottom: 2%;
-  text-decoration: line-through;
+  margin-bottom: 2%;
   font-size: 20px;
-  margin-left: 5%;
-  height: 10%;
+  margin-left: 4%;
+  height: 15%;
   width: 95%;
 }
+
 .overall-discount {
-    margin-bottom: 2%;
+  margin-bottom: 2%;
   margin-top: 1%;
-  font-size: 15px;
-  margin-left: 5%;
-  height: 10%;
+  font-size: 19px;
+  margin-left: 4%;
+  height: 15%;
   width: 100%;
 }
+
+.total-amount,
+.overall-discount,
+.actual-amount {
+  display: flex;
+}
+
+.payment-text {
+  width: 50%;
+  margin-right: 5%;
+}
+
 .proceed-to-pay-div {
   height: 25%;
   width: 100%;
   display: flex;
   align-items: center;
-  margin-left: 5%;
+  justify-content: center;
 }
+
 .payment-button {
   padding: 3% 3%;
   font-size: large;
@@ -66,6 +83,11 @@
   border-radius: 10px;
   margin-bottom: 2%;
 }
+
 .checkout-icon {
   margin-left: 10px;
+}
+
+#payment-value-text {
+  text-decoration: line-through;
 }

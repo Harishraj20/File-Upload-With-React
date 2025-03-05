@@ -46,7 +46,6 @@ function Basics() {
     };
     const handleChoiceSubmit = () => {
         if (choice[select] && choice[select].includes(selected)) {
-            console.log("All ready present");
             setMsg("Item already present");
             return;
         }

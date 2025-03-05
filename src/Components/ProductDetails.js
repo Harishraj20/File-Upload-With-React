@@ -15,14 +15,12 @@ function ProductDetail() {
 
                 if (!response.ok) {
                     const errorText = await response.text();
-                    console.log(errorText)
                     throw new Error(errorText);
                 }
 
                 const data = await response.json();
                 setProductDetail(data);
             } catch (error) {
-                console.log(error.message)
                 setErrorMsg(error.message);
             }
         };

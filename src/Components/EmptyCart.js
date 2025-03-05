@@ -7,7 +7,6 @@ const EmptyCart = ({ addToCart, saveForLater, setSaveForLater }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("Empty cart Use effect runs,");
     const fetchRecommendedProducts = async () => {
       try {
         const response = await fetch(

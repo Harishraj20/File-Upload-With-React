@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useMemo } from "react";
 import { CartContext, ProductContext } from "../Context/Context";
 
 function CartContextProvider({ children }) {
@@ -11,7 +11,6 @@ function CartContextProvider({ children }) {
     const loadProducts = async () => {
       const cartProducts = localStorage.getItem("cart");
       const parsedList = cartProducts ? JSON.parse(cartProducts) : [];
-
       setCartList(parsedList);
       await fetchProducts();
     };
@@ -42,18 +41,18 @@ function CartContextProvider({ children }) {
     return discountedPrice;
   };
 
-  const calculateCartTotal = () => {
+  const calculateCartTotal = useMemo(() => {
     return cartList.reduce(
       (total, item) =>
         total +
         Math.round(calculateDiscount(item.discount, item.mrp)) * item.qty,
       0
     );
-  };
+  }, [cartList]);
 
-  const calculateCartCount = () => {
+  const calculateCartCount = useMemo(() => {
     return cartList.reduce((total, item) => total + item.qty, 0);
-  };
+  }, [cartList]);
 
   const removeCartItem = (id) => {
     setCartList((prevState) => prevState.filter((item) => item.id !== id));
@@ -68,16 +67,19 @@ function CartContextProvider({ children }) {
     });
   };
 
-  const calculateActualAmount = () => {
+  const calculateActualAmount = useMemo(() => {
     return cartList.reduce((total, item) => total + item.mrp * item.qty, 0);
-  };
-  const totalDiscountedPercent = () => {
-    const discountAmount = calculateCartTotal();
-    const actualPrice = calculateActualAmount();
+  }, [cartList]);
+
+  const totalDiscountedPercent = useMemo(() => {
+    if (calculateActualAmount === 0) return 0;
+
     const totalPercentOfDiscount =
-      ((actualPrice - discountAmount) / actualPrice) * 100;
+      ((calculateActualAmount - calculateCartTotal) / calculateActualAmount) * 100;
+
     return Math.round(totalPercentOfDiscount);
-  };
+  }, [calculateCartTotal, calculateActualAmount]);
+
 
   const synchronizeCart = (updatedCart) => {
     const newList = updatedCart.map((product) => {
@@ -110,28 +112,30 @@ function CartContextProvider({ children }) {
   };
   const handleCart = (id) => {
     const product = productList.find((prod) => prod.id === id);
-
     if (product.quantity === 0) {
       return;
     }
 
     setCartList((prevState) => {
-      const existingCartItem = prevState.find((element) => element.id === id);
+      const existingCartItem = prevState.find((item) => item.id === id);
 
-      let updatedCart;
       if (existingCartItem) {
-        if (existingCartItem.qty < product.quantity) {
-          updatedCart = prevState.map((prod) =>
-            prod.id === id ? { ...prod, qty: prod.qty + 1 } : prod
-          );
-        } else {
-          updatedCart = [...prevState];
+        if (existingCartItem.qty >= 3) {
+          setToolTipId(id);
+          setIsDivOpen(true);
+          return prevState;
         }
-      } else {
-        updatedCart = [...prevState, { ...product, qty: 1 }];
+
+        return synchronizeCart(
+          prevState.map((item) =>
+            item.id === id && item.qty < product.quantity
+              ? { ...item, qty: item.qty + 1 }
+              : item
+          )
+        );
       }
-      const newList = synchronizeCart(updatedCart);
-      return newList;
+
+      return synchronizeCart([...prevState, { ...product, qty: 1 }]);
     });
   };
   return (
